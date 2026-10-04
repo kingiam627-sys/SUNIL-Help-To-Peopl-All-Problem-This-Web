@@ -1,0 +1,27 @@
+<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"><title>Healthy Weight Guide</title>
+<style>
+body{font-family:Arial;margin:0;background:#f3f7f4;color:#18231d}header{background:#176044;color:white;text-align:center;padding:30px 15px}.wrap{max-width:800px;margin:auto;padding:18px}.card{background:white;padding:20px;border-radius:16px;margin:15px 0;box-shadow:0 3px 15px #0001}.choices{display:flex;gap:10px}.choices button{flex:1}input,select,button{width:100%;padding:13px;margin:6px 0;border-radius:9px;border:1px solid #ccd8d1}button{background:#257b59;color:white;border:0;font-weight:bold}.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.result{background:#eef8f2;padding:15px;border-radius:12px;margin-top:10px}.hidden{display:none}.food{display:grid;grid-template-columns:1fr 1fr;gap:10px}.food div{background:#f5f7f6;padding:12px;border-radius:10px}@media(max-width:600px){.grid,.food{grid-template-columns:1fr}}
+</style></head><body>
+<header><h1>🥗 Healthy Weight Guide</h1><p>Simple tools, food ideas & healthy weight-loss tips</p></header><main class="wrap">
+<section class="card"><h2>1. Select</h2><div class="choices"><button id="m" onclick="g='Male';sel('m')">👨 Male</button><button id="f" onclick="g='Female';sel('f')">👩 Female</button></div></section>
+<section class="card"><h2>2. Your Details</h2><div class="grid">
+<div>Age (18+)<input id="age" type="number" min="18"></div>
+<div>Weight (kg)<input id="weight" type="number" step=".1"></div>
+<div>Height (cm)<input id="height" type="number" step=".1"></div>
+<div>Activity<select id="act"><option>Low</option><option>Moderate</option><option>High</option></select></div>
+</div><button onclick="go()">Show My Guide</button><div id="r" class="result hidden"></div></section>
+<section id="food" class="card hidden"><h2>🍽️ Food Ideas</h2><div class="food">
+<div><b>Breakfast</b><br>Oats + fruit + curd/yogurt, or vegetable poha/upma.</div>
+<div><b>Lunch</b><br>Dal/beans + vegetables + roti/rice + curd.</div>
+<div><b>Snack</b><br>Fruit, roasted chana, sprouts or unsalted nuts.</div>
+<div><b>Dinner</b><br>Vegetables + dal/paneer/tofu + sensible roti/rice portion.</div>
+</div></section>
+<section id="tips" class="card hidden"><h2>🏃 Weight-Loss Tips</h2><ul>
+<li>Reduce frequent sugary drinks and highly processed snacks.</li><li>Eat vegetables, whole fruits, whole grains and protein foods regularly.</li><li>Work toward 150 minutes/week of moderate activity if safe for you.</li><li>Track your weight and habits consistently.</li><li>Sleep and stress management matter too.</li></ul><b>Don't use crash diets or extreme restrictions.</b></section>
+<section class="card"><small>This is educational, not medical advice. BMI is a screening measure, not a diagnosis. For pregnancy/breastfeeding, age under 18, medical conditions, medicines affecting weight, or eating-disorder history, use professional guidance.</small></section>
+</main>
+<script>
+let g='';
+function sel(x){m.classList.remove('sel');f.classList.remove('sel');document.getElementById(x).style.background='#14563f'}
+function go(){let a=+age.value,w=+weight.value,h=+height.value;if(!g||a<18||!w||!h){alert('Select Male/Female and enter valid details');return}let bmi=w/(h/100)**2;let cat=bmi<18.5?'Below usual adult BMI range':bmi<25?'Usual adult BMI range':bmi<30?'Above usual adult BMI range':'BMI in obesity range';let five=w*.05;r.innerHTML='<b>BMI: '+bmi.toFixed(1)+'</b><br>'+cat+'<br><br>A practical first goal can be around 5% of starting weight over about 6 months: about '+five.toFixed(1)+' kg for your starting weight.<br><br>Focus on sustainable food habits, activity, sleep and tracking.';r.classList.remove('hidden');food.classList.remove('hidden');tips.classList.remove('hidden')}
+</script></body></html>
